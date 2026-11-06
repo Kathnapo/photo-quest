@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -442,48 +442,48 @@ button{font-size:20px;min-height:62px;border-radius:18px}
   <section id="start">
     <div class="hero">
       <div class="emoji">🎉</div>
-      <h1>Семейный фото-квест</h1>
-      <div class="subtitle">День рождения в батутном парке</div>
+      <h1>Family Photo Quest</h1>
+      <div class="subtitle">Birthday party at a trampoline park</div>
     </div>
     <div class="panel startCard">
-      <label class="small">Название семьи</label>
-      <input id="team" placeholder="Например: Ивановы" maxlength="28" autocomplete="off" inputmode="text">
-<div class="startHint">Введите фамилию семьи, чтобы начать</div>
-      <button id="startBtn" onclick="startGame()" disabled>Введите фамилию семьи</button>
+      <label class="small">Family name</label>
+      <input id="team" placeholder="For example: The Smiths" maxlength="28" autocomplete="off" inputmode="text">
+<div class="startHint">Enter your family name to start</div>
+      <button id="startBtn" onclick="startGame()" disabled>Enter your family name</button>
     </div>
   </section>
 
   <section id="game" class="hidden">
     <div class="gameHeader">
-      <div class="eyebrow">СЕМЬЯ</div>
+      <div class="eyebrow">FAMILY</div>
       <div class="familyName" id="teamName"></div>
     </div>
 
     <div class="panel progressWrap">
       <div class="progressTop">
-        <span>Ваш прогресс</span><strong id="score">0 / 6</strong>
+        <span>Your progress</span><strong id="score">0 / 6</strong>
       </div>
       <div class="bar"><div id="bar"></div></div>
       </div>
 
     <div class="panel" id="quests"></div>
 
-    <button class="secondary" onclick="resetGame()">Начать заново</button>
+    <button class="secondary" onclick="resetGame()">Start over</button>
   </section>
 
   <section id="finish" class="hidden">
     <div class="panel finish">
       <div class="big">🏆</div>
-      <div class="badge">ГОТОВО!</div>
+      <div class="badge">DONE!</div>
       <h2 id="finishTeam"></h2>
-      <p class="finishMain">Вы прошли семейный фото-квест!</p>
-      <p class="finishPrize">Покажите этот экран организатору праздника, чтобы получить приз 🎁</p>
+      <p class="finishMain">You finished the Family Photo Quest!</p>
+      <p class="finishPrize">Show this screen to the party host to get your prize 🎁</p>
 
       <div class="finalGallery" id="finalGallery"></div>
 
-      <p class="finishSave">Ваши фото готовы — поделитесь ими или сохраните на телефон.</p>
-      <button onclick="saveAllPhotos()">Поделиться всеми фото</button>
-      <button class="secondary" onclick="resetGame()">Играть ещё раз</button>
+      <p class="finishSave">Your photos are ready. Share them or save them to your phone.</p>
+      <button onclick="saveAllPhotos()">Share all photos</button>
+      <button class="secondary" onclick="resetGame()">Play again</button>
     </div>
   </section>
 
@@ -492,12 +492,12 @@ button{font-size:20px;min-height:62px;border-radius:18px}
 
 <script>
 const data = [
-  {icon:"📸", title:"Семейное фото", desc:"Сделайте ваше фото со своим ребёнком или детьми.", photo:true},
-  {icon:"🤸", title:"Прыжок 1", desc:"Сделайте фото вашего ребёнка в прыжке.", photo:true},
-  {icon:"😄", title:"Прыжок 2", desc:"А теперь ваша очередь — сделайте своё фото в прыжке 😄", photo:true},
-  {icon:"🪞", title:"Повтори за мной", desc:"Ребёнок показывает позу, а взрослый повторяет. Сделайте фото вместе.", photo:true},
-  {icon:"🦸", title:"Супергеройское фото", desc:"Сделайте совместное фото с ребёнком в позе любого супергероя.", photo:true},
-  {icon:"🎂", title:"Фото с именинником", desc:"Найдите именинника и сделайте фото вашего ребёнка вместе с ним.", photo:true}
+  {icon:"📸", title:"Family photo", desc:"Take a photo with your child or children.", photo:true},
+  {icon:"🤸", title:"Jump 1", desc:"Take a photo of your child mid-jump.", photo:true},
+  {icon:"😄", title:"Jump 2", desc:"Now it's your turn: take a photo of yourself mid-jump 😄", photo:true},
+  {icon:"🪞", title:"Copy me", desc:"Your child strikes a pose and you copy it. Take a photo together.", photo:true},
+  {icon:"🦸", title:"Superhero photo", desc:"Take a photo with your child, both in a superhero pose.", photo:true},
+  {icon:"🎂", title:"Birthday photo", desc:"Find the birthday kid and take a photo of them with your child.", photo:true}
 ];
 
 let done = [];
@@ -569,26 +569,26 @@ function render(){
 
     const photoHtml = photos[i] ? `
       <div class="photoBox" style="display:block">
-        <img src="${photos[i]}" alt="Фото задания">
-        <button class="removePhoto" onclick="removePhoto(${i})">Удалить</button>
+        <img src="${photos[i]}" alt="Task photo">
+        <button class="removePhoto" onclick="removePhoto(${i})">Remove</button>
       </div>` : "";
 
     row.innerHTML = `
       <div class="icon">${q.icon}</div>
       <div class="qbody">
-        <div class="stepLabel">Задание ${i+1} из ${data.length}</div>
+        <div class="stepLabel">Task ${i+1} of ${data.length}</div>
         <div class="qtitle">${q.title}</div>
         <div class="qdesc">${q.desc}</div>
         ${photoHtml}
-        ${photos[i] ? `<button class="savePhotoBtn" onclick="savePhoto(${i})">Скачать фото</button>` : ""}
+        ${photos[i] ? `<button class="savePhotoBtn" onclick="savePhoto(${i})">Download photo</button>` : ""}
         <label class="uploadLabel" for="photo-${i}">
-          ${photos[i] ? "Заменить фото" : "Добавить фото"}
+          ${photos[i] ? "Replace photo" : "Add photo"}
         </label>
         <input class="fileInput" id="photo-${i}" type="file" accept="image/*" capture="environment"
           onchange="addPhoto(${i}, this)">
       </div>
       <button class="qbtn" ${photos[i] ? "" : "disabled"} onclick="toggle(${i})">
-        ${done[i] ? "✓ Готово" : "Готово"}
+        ${done[i] ? "✓ Done" : "Done"}
       </button>
     `;
     box.appendChild(row);
@@ -655,8 +655,8 @@ function toggle(i){
   render();
 }
 function showFinish(){
-  const name = localStorage.getItem("mqFamily") || "Ваша семья";
-  document.getElementById("finishTeam").textContent = "Семья " + name;
+  const name = localStorage.getItem("mqFamily") || "Your family";
+  document.getElementById("finishTeam").textContent = "Family " + name;
   renderFinalGallery();
   document.getElementById("game").classList.add("hidden");
   document.getElementById("finish").classList.remove("hidden");
@@ -671,7 +671,7 @@ function renderFinalGallery(){
     if(!src) return;
     const item = document.createElement("div");
     item.className = "finalGalleryItem";
-    item.innerHTML = `<img src="${src}" alt="Фото ${i+1}">`;
+    item.innerHTML = `<img src="${src}" alt="Photo ${i+1}">`;
     gallery.appendChild(item);
   });
 }
@@ -701,8 +701,8 @@ async function saveAllPhotos(){
   try{
     if(navigator.canShare && navigator.canShare({files}) && navigator.share){
       await navigator.share({
-        title:"Фото с дня рождения",
-        text:"Семейный фото-квест",
+        title:"Birthday party photos",
+        text:"Family Photo Quest",
         files
       });
       return;
@@ -711,18 +711,18 @@ async function saveAllPhotos(){
     // Fallback: share one image if multiple-file sharing is unsupported.
     if(navigator.share && navigator.canShare && navigator.canShare({files:[files[0]]})){
       await navigator.share({
-        title:"Фото с дня рождения",
-        text:"Ваш браузер может поделиться только одним фото за раз.",
+        title:"Birthday party photos",
+        text:"Your browser can share only one photo at a time.",
         files:[files[0]]
       });
-      alert("Этот браузер не поддерживает отправку нескольких фото одновременно. Можно сохранить фотографии по одной.");
+      alert("This browser can't share several photos at once. You can save them one by one.");
       return;
     }
 
-    alert("На этом устройстве функция «Поделиться» для фотографий не поддерживается. Используйте кнопки «Скачать фото» под каждым снимком.");
+    alert("Sharing photos isn't supported on this device. Use the Download photo button under each photo.");
   }catch(err){
     if(err && err.name !== "AbortError"){
-      alert("Не удалось открыть меню «Поделиться». Попробуйте ещё раз.");
+      alert("Couldn't open the share menu. Please try again.");
     }
   }
 }
@@ -746,7 +746,7 @@ function updateStartButton(){
   const btn = document.getElementById("startBtn");
   const hasName = input.value.trim().length > 0;
   btn.disabled = !hasName;
-  btn.textContent = hasName ? "Начать" : "Введите фамилию семьи";
+  btn.textContent = hasName ? "Start" : "Enter your family name";
 }
 
 if ("scrollRestoration" in history) {
